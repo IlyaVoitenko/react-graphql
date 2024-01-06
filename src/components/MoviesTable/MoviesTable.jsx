@@ -13,6 +13,10 @@ const MoviesTable = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   console.log(moviesList);
-  return <div>MoviesTable</div>;
+  return (
+    <div>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    </div>
+  );
 };
 export default MoviesTable;
