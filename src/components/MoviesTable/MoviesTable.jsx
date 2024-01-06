@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { moviesQuery } from "./queries";
 import { useEffect, useState } from "react";
+
 import Table from "../Table";
 
 const MoviesTable = () => {
