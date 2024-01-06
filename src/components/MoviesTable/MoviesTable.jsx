@@ -3,6 +3,7 @@ import { moviesQuery } from "./queries";
 import { useEffect, useState } from "react";
 
 import Table from "../Table";
+import Navbar from "../Navbar";
 
 const MoviesTable = () => {
   const [moviesList, setMoviesList] = useState();
@@ -15,6 +16,11 @@ const MoviesTable = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  return <Table data={moviesList} />;
+  return (
+    <div className=" h-screen">
+      <Navbar />
+      <Table data={moviesList} />
+    </div>
+  );
 };
 export default MoviesTable;

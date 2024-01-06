@@ -3,6 +3,7 @@ import { directorsQuery } from "./queries";
 import { useEffect, useState } from "react";
 
 import Table from "../Table";
+import Navbar from "../Navbar";
 
 const DirectorsTable = () => {
   const [directorsList, setDirectorsList] = useState();
@@ -15,7 +16,12 @@ const DirectorsTable = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  return <Table data={directorsList} />;
+  return (
+    <div className="h-screen">
+      <Navbar />
+      <Table data={directorsList} />
+    </div>
+  );
 };
 
-export default DirectorsTable
+export default DirectorsTable;

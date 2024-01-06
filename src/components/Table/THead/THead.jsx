@@ -1,5 +1,4 @@
 const THead = ({ data }) => {
-  
   let fielsData = null;
   if (data && data.length > 0) {
     fielsData = Object.keys(data[0]);
