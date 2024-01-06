@@ -1,13 +1,17 @@
 import "./App.css";
-import { ApolloProvider } from "@apollo/client";
 import MoviesTable from "./components/MoviesTable";
-import client from "./client";
+import DirectorsTable from "./components/DirectorsTable";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <MoviesTable />
-    </ApolloProvider>
+    <BrowserRouter>
+    <Routes>
+      <Route index element={<MoviesTable />} errorElement={<p>error</p>}/>
+      <Route path="/directors" element={<DirectorsTable />} errorElement={<p>error</p>}/>
+    </Routes>
+    </BrowserRouter>
   );
 }
 
