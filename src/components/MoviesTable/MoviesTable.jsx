@@ -7,7 +7,7 @@ import Navbar from "../Navbar";
 
 const MoviesTable = () => {
   const [moviesList, setMoviesList] = useState();
-  const { loading, error, data } = useQuery(moviesQuery);
+  const { loading, error, data } = useQuery(moviesQuery, { pollInterval: 500 });
 
   useEffect(() => {
     if (!loading) return setMoviesList(data.movies);

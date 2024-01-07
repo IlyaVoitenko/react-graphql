@@ -9,6 +9,15 @@ export const addDirector = gql`
   }
 `;
 
+export const deleteDirector = gql`
+  mutation ($id: ID!) {
+    deleteDirector(id: $id) {
+      name
+      age
+    }
+  }
+`;
+
 export const updateDirector = gql`
   mutation ($id: ID!, $name: String!, $age: Int!) {
     updateDirector(id: $id, name: $name, age: $age) {

@@ -7,7 +7,9 @@ import Navbar from "../Navbar";
 
 const DirectorsTable = () => {
   const [directorsList, setDirectorsList] = useState();
-  const { loading, error, data } = useQuery(directorsQuery);
+  const { loading, error, data } = useQuery(directorsQuery, {
+    pollInterval: 500,
+  });
 
   useEffect(() => {
     if (!loading) return setDirectorsList(data.directors);
