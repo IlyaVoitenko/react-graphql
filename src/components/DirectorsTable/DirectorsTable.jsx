@@ -20,7 +20,7 @@ const DirectorsTable = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="h-screen">
+    <div className="h-screen flex flex-col">
       <Navbar />
       <CreateBtn collection={"Directors"} />
       <Table data={directorsList} />

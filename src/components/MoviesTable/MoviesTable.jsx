@@ -17,7 +17,7 @@ const MoviesTable = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className=" h-screen">
+    <div className=" h-screen flex flex-col">
       <Navbar />
       <CreateBtn collection={"Movie"} />
       <Table data={moviesList} />
