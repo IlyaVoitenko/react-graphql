@@ -1,5 +1,11 @@
 import { useMutation } from "@apollo/client";
 import {
+  setIsOpenModal,
+  setCollectionModal,
+  setModeModal,
+  setIdItem,
+} from "../../../store/reduces/modal";
+import {
   addDirector,
   updateDirector,
   deleteDirector,
@@ -9,8 +15,11 @@ import {
   deleteMovie,
   updateMovie,
 } from "../../MoviesTable/mutations";
+import { useDispatch } from "react-redux";
 
 const TBody = ({ data }) => {
+  const dispatch = useDispatch();
+
   const [newMovie] = useMutation(addMovie);
   const [removeMovie] = useMutation(deleteMovie);
   const [moderniseMovie] = useMutation(updateMovie);
@@ -18,6 +27,13 @@ const TBody = ({ data }) => {
   const [newDirector] = useMutation(addDirector);
   const [moderniseDirector] = useMutation(updateDirector);
   const [removeDirector] = useMutation(deleteDirector);
+
+  const handleEditItem = (id, collection, mode) => {
+    dispatch(setCollectionModal(collection));
+    dispatch(setIdItem(id));
+    dispatch(setModeModal(mode));
+    dispatch(setIsOpenModal());
+  };
 
   const handleCheckCollectionRemoveItem = (__typename, id) => {
     return __typename === "Directors"
@@ -27,7 +43,7 @@ const TBody = ({ data }) => {
   const handleRemoveMovie = async (id) => {
     const { data } = await removeMovie({
       variables: {
-        id: id,
+        id,
       },
     });
     return data;
@@ -35,7 +51,7 @@ const TBody = ({ data }) => {
   const handleRemoveDirector = async (id) => {
     const { data } = await removeDirector({
       variables: {
-        id: id,
+        id,
       },
     });
     return data;
@@ -58,6 +74,17 @@ const TBody = ({ data }) => {
                 }
               >
                 Delete
+              </button>
+            </td>
+            <td>
+              <button
+                data-modal-target="default-modal"
+                data-modal-toggle="default-modal"
+                className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button"
+                onClick={() => handleEditItem(item.id, item.__typename, "Edit")}
+              >
+                Edit
               </button>
             </td>
           </tr>

@@ -19,7 +19,7 @@ export const deleteMovie = gql`
 `;
 
 export const updateMovie = gql`
-  mutation ($id: ID!, $name: String!, $genre: String!, $directorId: ID) {
+  mutation ($id: ID!, $name: String!, $genre: String!, $directorId: ID!) {
     updateMovie(id: $id, name: $name, genre: $genre, directorId: $directorId) {
       id
       name

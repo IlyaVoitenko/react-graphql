@@ -1,14 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { ApolloProvider } from "@apollo/client";
+import { Provider } from "react-redux";
 import client from "./client";
-import App from './App.jsx'
-import './index.css'
+import { store } from "./store";
+import App from "./App.jsx";
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-    <App />
-    </ApolloProvider>
-  </React.StrictMode>,
-)
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </Provider>
+  </React.StrictMode>
+);
