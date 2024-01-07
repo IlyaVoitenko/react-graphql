@@ -64,28 +64,24 @@ export const handleCheckCreatOrEditDirector = async (
 };
 const handleEditDirector = async ({ editDirector }, id, age, name) => {
   const ageNumber = +age;
-
   const { data } = await editDirector({
     variables: {
       id,
-      ageNumber,
       name,
+      age: ageNumber,
     },
   });
   return data;
 };
 const handleCreateDirector = async ({ createDirector }, age, name) => {
-  console.log("create");
-  console.log(typeof age, " ", age);
-
   const ageNumber = +age;
-  console.log(typeof ageNumber, " ", ageNumber);
   const { data } = await createDirector({
     variables: {
       name,
-      ageNumber,
+      age: ageNumber,
     },
   });
+  console.log(data);
   return data;
 };
 //remove item

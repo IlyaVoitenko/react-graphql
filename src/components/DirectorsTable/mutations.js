@@ -23,7 +23,7 @@ export const updateDirector = gql`
     updateDirector(id: $id, name: $name, age: $age) {
       id
       name
-      genre
+      age
     }
   }
 `;
