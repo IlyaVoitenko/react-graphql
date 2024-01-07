@@ -1,3 +1,11 @@
+import {
+  setIsOpenModal,
+  setCollectionModal,
+  setModeModal,
+  setIdItem,
+} from "../store/reduces/modal";
+
+//create and update items of movie
 export const handleCheckCreatOrEditMovie = async (
   mutation,
   modeModal,
@@ -41,4 +49,77 @@ export const handleCreateMovie = async (
     },
   });
   return data;
+};
+//create and update items of directors
+export const handleCheckCreatOrEditDirector = async (
+  mutation,
+  modeModal,
+  id,
+  age,
+  name
+) => {
+  return modeModal === "Edit"
+    ? await handleEditDirector(mutation, id, name, age)
+    : await handleCreateDirector(mutation, age, name);
+};
+const handleEditDirector = async ({ editDirector }, id, age, name) => {
+  const ageNumber = +age;
+
+  const { data } = await editDirector({
+    variables: {
+      id,
+      ageNumber,
+      name,
+    },
+  });
+  return data;
+};
+const handleCreateDirector = async ({ createDirector }, age, name) => {
+  console.log("create");
+  console.log(typeof age, " ", age);
+
+  const ageNumber = +age;
+  console.log(typeof ageNumber, " ", ageNumber);
+  const { data } = await createDirector({
+    variables: {
+      name,
+      ageNumber,
+    },
+  });
+  return data;
+};
+//remove item
+export const handleCheckCollectionRemoveItem = (
+  { removeMovie, removeDirector },
+  __typename,
+  id
+) => {
+  return __typename === "Directors"
+    ? handleRemoveDirector(id, removeDirector)
+    : handleRemoveMovie(id, removeMovie);
+};
+const handleRemoveMovie = async (id, removeMovie) => {
+  console.log(id);
+  const { data } = await removeMovie({
+    variables: {
+      id: id,
+    },
+  });
+  console.log(data);
+  return data;
+};
+const handleRemoveDirector = async (id, removeDirector) => {
+  const { data } = await removeDirector({
+    variables: {
+      id,
+    },
+  });
+  return data;
+};
+//open edit modal
+export const handleEditItem = (dispatch, id, collection, mode) => {
+  dispatch(setCollectionModal(collection));
+  dispatch(setIdItem(id));
+  dispatch(setModeModal(mode));
+  dispatch(setIsOpenModal());
 };

@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { moviesQuery } from "./queries";
 import { useEffect, useState } from "react";
-
+import CreateBtn from "../CreateBtn";
 import Table from "../Table";
 import Navbar from "../Navbar";
 
@@ -19,6 +19,7 @@ const MoviesTable = () => {
   return (
     <div className=" h-screen">
       <Navbar />
+      <CreateBtn collection={"Movie"} />
       <Table data={moviesList} />
     </div>
   );

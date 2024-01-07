@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { directorsQuery } from "./queries";
 import { useEffect, useState } from "react";
+import CreateBtn from "../CreateBtn";
 
 import Table from "../Table";
 import Navbar from "../Navbar";
@@ -21,6 +22,7 @@ const DirectorsTable = () => {
   return (
     <div className="h-screen">
       <Navbar />
+      <CreateBtn collection={"Directors"} />
       <Table data={directorsList} />
     </div>
   );
